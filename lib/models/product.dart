@@ -1,10 +1,8 @@
 // ignore_for_file: invalid_annotation_target
-
 import 'dart:core';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import 'link.dart';
+import 'package:octoinfo/models/link.dart';
 
 part 'product.freezed.dart';
 part 'product.g.dart';

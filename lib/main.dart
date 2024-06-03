@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:octoinfo/repos/octopus_repo.dart';
 import 'package:octoinfo/services/http_client_service.dart';
+import 'package:octoinfo/state/providers.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,78 +25,85 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends HookConsumerWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final octopusNotifier = ref.watch(octopusStateNotifierProvider);
 
-class _MyHomePageState extends State<MyHomePage> {
-  final octopusRepo = OctopusRepo(HttpClientService());
-  int _counter = 0;
-
-  Future<void> _incrementCounter() async {
-    final products = await octopusRepo.getProducts();
-    print(products);
-
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('OctoInfo'),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+        child: octopusNotifier.products == null
+            ? const Text('Press button to fetch products')
+            : SizedBox(
+                width: double.infinity,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: octopusNotifier.products!.map<Widget>(
+                      (product) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Card(
+                            child: SizedBox(
+                              width: 400,
+                              height: 150,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      product.displayName!,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      product.brand!,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    if (product.availableFrom != null)
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text('Available from: '),
+                                          Text(
+                                            product.availableFrom!.toString(),
+                                          )
+                                        ],
+                                      ),
+                                    if (product.availableTo != null)
+                                      Row(
+                                        children: [
+                                          const Text('Available to: '),
+                                          Text(
+                                            product.availableTo!.toString(),
+                                          )
+                                        ],
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ).toList(),
+                  ),
+                ),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () =>
+            ref.read(octopusStateNotifierProvider.notifier).getProducts(),
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.electric_bolt),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
