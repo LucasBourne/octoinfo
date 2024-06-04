@@ -8,9 +8,11 @@ class OctopusStateNotifier extends StateNotifier<OctopusState> {
   final OctopusInterface _octopusRepo;
 
   Future<void> getProducts() async {
-    state = OctopusState.loading();
+    state = OctopusStateLoading();
 
     final products = await _octopusRepo.getProducts();
+
+    products.sort((a, b) => b.brand!.compareTo(a.brand!));
 
     state = OctopusState(products: products);
   }

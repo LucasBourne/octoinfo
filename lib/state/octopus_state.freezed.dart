@@ -17,6 +17,44 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$OctopusState {
   List<Product>? get products => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<Product>? products) $default, {
+    required TResult Function(List<Product>? products) loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(List<Product>? products)? $default, {
+    TResult? Function(List<Product>? products)? loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<Product>? products)? $default, {
+    TResult Function(List<Product>? products)? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OctopusState value) $default, {
+    required TResult Function(OctopusStateLoading value) loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OctopusState value)? $default, {
+    TResult? Function(OctopusStateLoading value)? loading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OctopusState value)? $default, {
+    TResult Function(OctopusStateLoading value)? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OctopusStateCopyWith<OctopusState> get copyWith =>
@@ -127,6 +165,68 @@ class _$OctopusStateImpl implements _OctopusState {
   @pragma('vm:prefer-inline')
   _$$OctopusStateImplCopyWith<_$OctopusStateImpl> get copyWith =>
       __$$OctopusStateImplCopyWithImpl<_$OctopusStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<Product>? products) $default, {
+    required TResult Function(List<Product>? products) loading,
+  }) {
+    return $default(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(List<Product>? products)? $default, {
+    TResult? Function(List<Product>? products)? loading,
+  }) {
+    return $default?.call(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<Product>? products)? $default, {
+    TResult Function(List<Product>? products)? loading,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(products);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OctopusState value) $default, {
+    required TResult Function(OctopusStateLoading value) loading,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OctopusState value)? $default, {
+    TResult? Function(OctopusStateLoading value)? loading,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OctopusState value)? $default, {
+    TResult Function(OctopusStateLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class _OctopusState implements OctopusState {
@@ -138,5 +238,153 @@ abstract class _OctopusState implements OctopusState {
   @override
   @JsonKey(ignore: true)
   _$$OctopusStateImplCopyWith<_$OctopusStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OctopusStateLoadingImplCopyWith<$Res>
+    implements $OctopusStateCopyWith<$Res> {
+  factory _$$OctopusStateLoadingImplCopyWith(_$OctopusStateLoadingImpl value,
+          $Res Function(_$OctopusStateLoadingImpl) then) =
+      __$$OctopusStateLoadingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Product>? products});
+}
+
+/// @nodoc
+class __$$OctopusStateLoadingImplCopyWithImpl<$Res>
+    extends _$OctopusStateCopyWithImpl<$Res, _$OctopusStateLoadingImpl>
+    implements _$$OctopusStateLoadingImplCopyWith<$Res> {
+  __$$OctopusStateLoadingImplCopyWithImpl(_$OctopusStateLoadingImpl _value,
+      $Res Function(_$OctopusStateLoadingImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? products = freezed,
+  }) {
+    return _then(_$OctopusStateLoadingImpl(
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OctopusStateLoadingImpl implements OctopusStateLoading {
+  _$OctopusStateLoadingImpl({final List<Product>? products})
+      : _products = products;
+
+  final List<Product>? _products;
+  @override
+  List<Product>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'OctopusState.loading(products: $products)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OctopusStateLoadingImpl &&
+            const DeepCollectionEquality().equals(other._products, _products));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OctopusStateLoadingImplCopyWith<_$OctopusStateLoadingImpl> get copyWith =>
+      __$$OctopusStateLoadingImplCopyWithImpl<_$OctopusStateLoadingImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<Product>? products) $default, {
+    required TResult Function(List<Product>? products) loading,
+  }) {
+    return loading(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(List<Product>? products)? $default, {
+    TResult? Function(List<Product>? products)? loading,
+  }) {
+    return loading?.call(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<Product>? products)? $default, {
+    TResult Function(List<Product>? products)? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(products);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OctopusState value) $default, {
+    required TResult Function(OctopusStateLoading value) loading,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OctopusState value)? $default, {
+    TResult? Function(OctopusStateLoading value)? loading,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OctopusState value)? $default, {
+    TResult Function(OctopusStateLoading value)? loading,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OctopusStateLoading implements OctopusState {
+  factory OctopusStateLoading({final List<Product>? products}) =
+      _$OctopusStateLoadingImpl;
+
+  @override
+  List<Product>? get products;
+  @override
+  @JsonKey(ignore: true)
+  _$$OctopusStateLoadingImplCopyWith<_$OctopusStateLoadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

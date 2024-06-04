@@ -7,6 +7,5 @@ part 'octopus_state.freezed.dart';
 class OctopusState with _$OctopusState {
   const factory OctopusState({List<Product>? products}) = _OctopusState;
 
-  factory OctopusState.loading({List<Product>? products}) =>
-      OctopusState(products: products);
+  factory OctopusState.loading({List<Product>? products}) = OctopusStateLoading;
 }
