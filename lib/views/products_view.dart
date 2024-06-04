@@ -28,13 +28,15 @@ class _ProductsViewState extends ConsumerState<ProductsView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('OctoInfo'),
+        title: const Text('Products'),
       ),
       body: Center(
         child: octopusState is OctopusStateLoading
             ? const CircularProgressIndicator()
             : octopusState.products == null
-                ? const Text('Press button to fetch products')
+                ? const Text(
+                    'We\'re having trouble fetching products. Please try again later.',
+                  )
                 : SizedBox(
                     width: double.infinity,
                     child: SingleChildScrollView(

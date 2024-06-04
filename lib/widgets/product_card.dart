@@ -40,10 +40,27 @@ class _ProductCardState extends State<ProductCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    '${product.displayName.capitalise()!} (${product.brand.snakeToSentence()})',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Center(
+                          child: Text(
+                            '${product.displayName.capitalise()!} (${product.brand.snakeToSentence()})',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Icon(
+                          _isExpanded
+                              ? Icons.arrow_drop_down
+                              : Icons.arrow_drop_up,
+                        ),
+                      ),
+                    ],
                   ),
                   if (_isExpanded)
                     Column(
