@@ -2,7 +2,8 @@
 import 'dart:core';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:octoinfo/models/address.dart';
+import 'package:octoinfo/models/electricity_meter_point.dart';
+import 'package:octoinfo/models/gas_meter_point.dart';
 
 part 'property.freezed.dart';
 part 'property.g.dart';
@@ -19,9 +20,9 @@ class Property with _$Property {
     String? town,
     String? county,
     String? postcode,
-    // @JsonKey(name: 'electricity_meter_points')
-    // List<ElectricityMeterPoint>? electricityMeterPoints,
-    // @JsonKey(name: 'gas_meter_points') List<GasMeterPoint>? gasMeterPoints,
+    @JsonKey(name: 'electricity_meter_points')
+    List<ElectricityMeterPoint>? electricityMeterPoints,
+    @JsonKey(name: 'gas_meter_points') List<GasMeterPoint>? gasMeterPoints,
   }) = _Property;
 
   factory Property.fromJson(Map<String, dynamic> json) =>

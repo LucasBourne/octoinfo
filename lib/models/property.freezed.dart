@@ -34,6 +34,11 @@ mixin _$Property {
   String? get town => throw _privateConstructorUsedError;
   String? get county => throw _privateConstructorUsedError;
   String? get postcode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'electricity_meter_points')
+  List<ElectricityMeterPoint>? get electricityMeterPoints =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'gas_meter_points')
+  List<GasMeterPoint>? get gasMeterPoints => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +60,10 @@ abstract class $PropertyCopyWith<$Res> {
       @JsonKey(name: 'address_line_3') String? addressLine3,
       String? town,
       String? county,
-      String? postcode});
+      String? postcode,
+      @JsonKey(name: 'electricity_meter_points')
+      List<ElectricityMeterPoint>? electricityMeterPoints,
+      @JsonKey(name: 'gas_meter_points') List<GasMeterPoint>? gasMeterPoints});
 }
 
 /// @nodoc
@@ -80,6 +88,8 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
     Object? town = freezed,
     Object? county = freezed,
     Object? postcode = freezed,
+    Object? electricityMeterPoints = freezed,
+    Object? gasMeterPoints = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -118,6 +128,14 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
           ? _value.postcode
           : postcode // ignore: cast_nullable_to_non_nullable
               as String?,
+      electricityMeterPoints: freezed == electricityMeterPoints
+          ? _value.electricityMeterPoints
+          : electricityMeterPoints // ignore: cast_nullable_to_non_nullable
+              as List<ElectricityMeterPoint>?,
+      gasMeterPoints: freezed == gasMeterPoints
+          ? _value.gasMeterPoints
+          : gasMeterPoints // ignore: cast_nullable_to_non_nullable
+              as List<GasMeterPoint>?,
     ) as $Val);
   }
 }
@@ -139,7 +157,10 @@ abstract class _$$PropertyImplCopyWith<$Res>
       @JsonKey(name: 'address_line_3') String? addressLine3,
       String? town,
       String? county,
-      String? postcode});
+      String? postcode,
+      @JsonKey(name: 'electricity_meter_points')
+      List<ElectricityMeterPoint>? electricityMeterPoints,
+      @JsonKey(name: 'gas_meter_points') List<GasMeterPoint>? gasMeterPoints});
 }
 
 /// @nodoc
@@ -162,6 +183,8 @@ class __$$PropertyImplCopyWithImpl<$Res>
     Object? town = freezed,
     Object? county = freezed,
     Object? postcode = freezed,
+    Object? electricityMeterPoints = freezed,
+    Object? gasMeterPoints = freezed,
   }) {
     return _then(_$PropertyImpl(
       id: freezed == id
@@ -200,6 +223,14 @@ class __$$PropertyImplCopyWithImpl<$Res>
           ? _value.postcode
           : postcode // ignore: cast_nullable_to_non_nullable
               as String?,
+      electricityMeterPoints: freezed == electricityMeterPoints
+          ? _value._electricityMeterPoints
+          : electricityMeterPoints // ignore: cast_nullable_to_non_nullable
+              as List<ElectricityMeterPoint>?,
+      gasMeterPoints: freezed == gasMeterPoints
+          ? _value._gasMeterPoints
+          : gasMeterPoints // ignore: cast_nullable_to_non_nullable
+              as List<GasMeterPoint>?,
     ));
   }
 }
@@ -216,7 +247,13 @@ class _$PropertyImpl implements _Property {
       @JsonKey(name: 'address_line_3') this.addressLine3,
       this.town,
       this.county,
-      this.postcode});
+      this.postcode,
+      @JsonKey(name: 'electricity_meter_points')
+      final List<ElectricityMeterPoint>? electricityMeterPoints,
+      @JsonKey(name: 'gas_meter_points')
+      final List<GasMeterPoint>? gasMeterPoints})
+      : _electricityMeterPoints = electricityMeterPoints,
+        _gasMeterPoints = gasMeterPoints;
 
   factory _$PropertyImpl.fromJson(Map<String, dynamic> json) =>
       _$$PropertyImplFromJson(json);
@@ -244,10 +281,32 @@ class _$PropertyImpl implements _Property {
   final String? county;
   @override
   final String? postcode;
+  final List<ElectricityMeterPoint>? _electricityMeterPoints;
+  @override
+  @JsonKey(name: 'electricity_meter_points')
+  List<ElectricityMeterPoint>? get electricityMeterPoints {
+    final value = _electricityMeterPoints;
+    if (value == null) return null;
+    if (_electricityMeterPoints is EqualUnmodifiableListView)
+      return _electricityMeterPoints;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<GasMeterPoint>? _gasMeterPoints;
+  @override
+  @JsonKey(name: 'gas_meter_points')
+  List<GasMeterPoint>? get gasMeterPoints {
+    final value = _gasMeterPoints;
+    if (value == null) return null;
+    if (_gasMeterPoints is EqualUnmodifiableListView) return _gasMeterPoints;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Property(id: $id, moveInDate: $moveInDate, moveOutDate: $moveOutDate, addressLine1: $addressLine1, addressLine2: $addressLine2, addressLine3: $addressLine3, town: $town, county: $county, postcode: $postcode)';
+    return 'Property(id: $id, moveInDate: $moveInDate, moveOutDate: $moveOutDate, addressLine1: $addressLine1, addressLine2: $addressLine2, addressLine3: $addressLine3, town: $town, county: $county, postcode: $postcode, electricityMeterPoints: $electricityMeterPoints, gasMeterPoints: $gasMeterPoints)';
   }
 
   @override
@@ -269,13 +328,28 @@ class _$PropertyImpl implements _Property {
             (identical(other.town, town) || other.town == town) &&
             (identical(other.county, county) || other.county == county) &&
             (identical(other.postcode, postcode) ||
-                other.postcode == postcode));
+                other.postcode == postcode) &&
+            const DeepCollectionEquality().equals(
+                other._electricityMeterPoints, _electricityMeterPoints) &&
+            const DeepCollectionEquality()
+                .equals(other._gasMeterPoints, _gasMeterPoints));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, moveInDate, moveOutDate,
-      addressLine1, addressLine2, addressLine3, town, county, postcode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      moveInDate,
+      moveOutDate,
+      addressLine1,
+      addressLine2,
+      addressLine3,
+      town,
+      county,
+      postcode,
+      const DeepCollectionEquality().hash(_electricityMeterPoints),
+      const DeepCollectionEquality().hash(_gasMeterPoints));
 
   @JsonKey(ignore: true)
   @override
@@ -301,7 +375,11 @@ abstract class _Property implements Property {
       @JsonKey(name: 'address_line_3') final String? addressLine3,
       final String? town,
       final String? county,
-      final String? postcode}) = _$PropertyImpl;
+      final String? postcode,
+      @JsonKey(name: 'electricity_meter_points')
+      final List<ElectricityMeterPoint>? electricityMeterPoints,
+      @JsonKey(name: 'gas_meter_points')
+      final List<GasMeterPoint>? gasMeterPoints}) = _$PropertyImpl;
 
   factory _Property.fromJson(Map<String, dynamic> json) =
       _$PropertyImpl.fromJson;
@@ -329,6 +407,12 @@ abstract class _Property implements Property {
   String? get county;
   @override
   String? get postcode;
+  @override
+  @JsonKey(name: 'electricity_meter_points')
+  List<ElectricityMeterPoint>? get electricityMeterPoints;
+  @override
+  @JsonKey(name: 'gas_meter_points')
+  List<GasMeterPoint>? get gasMeterPoints;
   @override
   @JsonKey(ignore: true)
   _$$PropertyImplCopyWith<_$PropertyImpl> get copyWith =>

@@ -56,8 +56,8 @@ class _ProductCardState extends State<ProductCard> {
                         alignment: Alignment.centerRight,
                         child: Icon(
                           _isExpanded
-                              ? Icons.arrow_drop_down
-                              : Icons.arrow_drop_up,
+                              ? Icons.arrow_drop_up
+                              : Icons.arrow_drop_down,
                         ),
                       ),
                     ],

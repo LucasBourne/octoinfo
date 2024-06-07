@@ -21,6 +21,14 @@ _$PropertyImpl _$$PropertyImplFromJson(Map<String, dynamic> json) =>
       town: json['town'] as String?,
       county: json['county'] as String?,
       postcode: json['postcode'] as String?,
+      electricityMeterPoints: (json['electricity_meter_points']
+              as List<dynamic>?)
+          ?.map(
+              (e) => ElectricityMeterPoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      gasMeterPoints: (json['gas_meter_points'] as List<dynamic>?)
+          ?.map((e) => GasMeterPoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$PropertyImplToJson(_$PropertyImpl instance) =>
@@ -34,4 +42,6 @@ Map<String, dynamic> _$$PropertyImplToJson(_$PropertyImpl instance) =>
       'town': instance.town,
       'county': instance.county,
       'postcode': instance.postcode,
+      'electricity_meter_points': instance.electricityMeterPoints,
+      'gas_meter_points': instance.gasMeterPoints,
     };

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:octoinfo/state/octopus_state.dart';
+import 'package:octoinfo/state/account_state.dart';
 import 'package:octoinfo/state/providers.dart';
-import 'package:octoinfo/widgets/product_card.dart';
+import 'package:octoinfo/widgets/account_setup_form.dart';
 
 class AccountView extends StatefulHookConsumerWidget {
   const AccountView({super.key});
@@ -17,20 +17,28 @@ class _AccountViewState extends ConsumerState<AccountView> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(octopusStateNotifierProvider.notifier).getProducts();
+      ref.read(accountStateNotifierProvider.notifier).getAccount();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final octopusState = ref.watch(octopusStateNotifierProvider);
+    final accountState = ref.watch(accountStateNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Account'),
       ),
-      body: const Center(child: Text('Your account page is coming soon')),
+      body: Center(
+        child: accountState is AccountStateLoading
+            ? const CircularProgressIndicator()
+            : accountState is AccountStateNotSetUp
+                ? AccountSetupForm()
+                : Text(
+                    accountState.account?.properties?.first.addressLine1 ?? '',
+                  ),
+      ),
     );
   }
 }
