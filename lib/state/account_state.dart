@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:octoinfo/models/account.dart';
+import 'package:octopod/models/account.dart';
 part 'account_state.freezed.dart';
 
 @freezed

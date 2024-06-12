@@ -1,31 +1,29 @@
-import 'package:octoinfo/models/account.dart';
-import 'package:octoinfo/models/product.dart';
 import 'package:octoinfo/repos/octopus_interface.dart';
-import 'package:octoinfo/services/http_client_service.dart';
+import 'package:octopod/models/account.dart';
+import 'package:octopod/models/product.dart';
+import 'package:octopod/octopod.dart';
 
 class OctopusRepo implements OctopusInterface {
-  const OctopusRepo(this.httpClientService);
+  const OctopusRepo(this.octopod);
 
-  final HttpClientService httpClientService;
+  final Octopod octopod;
 
   @override
-  Future<List<Product>> getProducts() async {
-    final productResponse = await httpClientService.get('/products');
-    final results = productResponse['results'] as List;
-    final products =
-        results.map<Product>((result) => Product.fromJson(result)).toList();
-
-    return products;
+  void setApiKey(String apiKey) {
+    octopod.setApiKey(apiKey);
   }
 
   @override
-  Future<Account> getAccount(String userId, String apiKey) async {
-    final accountResponse = await httpClientService.get(
-      '/accounts/$userId/',
-      apiKey,
-    );
-    final account = Account.fromJson(accountResponse);
+  Future<List<Product>> getProducts() async {
+    final productResponse = await octopod.getProducts();
 
-    return account;
+    return productResponse;
+  }
+
+  @override
+  Future<Account> getAccount(String userId) async {
+    final accountResponse = await octopod.getAccount(userId);
+
+    return accountResponse;
   }
 }

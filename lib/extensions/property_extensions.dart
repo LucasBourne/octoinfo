@@ -1,5 +1,5 @@
-import 'package:octoinfo/models/address.dart';
-import 'package:octoinfo/models/property.dart';
+import 'package:octopod/models/address.dart';
+import 'package:octopod/models/property.dart';
 
 extension PropertyExtension on Property {
   Address? get address {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:octoinfo/extensions/string_extensions.dart';
-import 'package:octoinfo/models/product.dart';
+import 'package:octopod/models/product.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard(this.product, {super.key});

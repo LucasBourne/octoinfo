@@ -21,7 +21,8 @@ class AccountStateNotifier extends StateNotifier<AccountState> {
       return;
     }
 
-    final account = await _octopusRepo.getAccount(savedUserId, savedApiKey);
+    _octopusRepo.setApiKey(savedApiKey);
+    final account = await _octopusRepo.getAccount(savedUserId);
 
     state = AccountState(account: account);
   }
@@ -34,7 +35,8 @@ class AccountStateNotifier extends StateNotifier<AccountState> {
       _secureStorageService.writeData('apiKey', apiKey),
     ]);
 
-    final account = await _octopusRepo.getAccount(userId, apiKey);
+    _octopusRepo.setApiKey(apiKey);
+    final account = await _octopusRepo.getAccount(userId);
 
     state = AccountState(account: account);
   }

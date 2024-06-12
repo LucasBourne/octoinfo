@@ -512,6 +512,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  octopod:
+    dependency: "direct main"
+    description:
+      name: octopod
+      sha256: "6505d57e86d981c1724e2410d1a949c6fa070a0ec643e1ea88bad7087a4add9a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   package_config:
     dependency: transitive
     description:
